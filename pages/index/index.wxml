@@ -1,4 +1,107 @@
-<!--index.wxml-->
-<view class="container">
-  <text class="userinfo-nickname">hello world</text>
+<!--pages/index.wxml-->
+
+<view class="header">
+  <input 
+    type="text" 
+    class="header-input" 
+    placeholder="Angular*MySQL*Java"
+    placeholder-class="header-input-placeholder" 
+    bindinput="handleInputChange"
+  />
+  <icon 
+    type="search" 
+    class="header-input-icon"
+    size="15"
+    wx:if="{{showIcon}}"
+  ></icon>
+</view>
+
+<view class="navigator">
+  <view class="navigator-item">
+    <image 
+      src="../../resources/recommend.png"
+      class="navigator-img"
+    ></image>
+    推荐
+    <view class="navigator-active"></view>
+  </view>
+  <view class="navigator-item">
+    <image 
+      src="../../resources/path.png"
+      class="navigator-img"
+    ></image>
+    路径
+  </view>
+  <view class="navigator-item">
+    <image 
+      src="../../resources/project.png"
+      class="navigator-img"
+    ></image>
+    实战
+  </view>
+  <view class="navigator-item">
+    <image 
+      src="../../resources/activity.png"
+      class="navigator-img"
+    ></image>
+    活动
+  </view>
+</view>
+
+<swiper
+  class="swiper"
+  previous-margin="18rpx"
+  next-margin="18rpx"
+  circular="{{true}}"
+  autoplay="{{true}}"
+>
+  <swiper-item 
+    class="swiper-item"
+    wx:for="{{swiperList}}"
+    wx:key="*this"
+  >
+    <image class="swiper-image" src="{{item.imgUrl}}"></image>
+  </swiper-item>
+</swiper>
+<view class="project">
+  <text class="project-title">实战推荐</text>
+  <view 
+    class="project-item"
+    wx:for="{{course}}"
+    wx:key="*this"
+  >
+    <image 
+      class="project-item-pic"
+      src="{{item.imgUrl}}"
+    ></image>
+    <view class="project-item-content">
+      <view class="project-item-title">
+        {{item.title}}
+      </view>
+      <view class="project-item-tags">
+        <view 
+          class="project-item-price-active"
+          wx:if="{{item.promotion}}"
+        >
+          {{item.price}}</view>
+        <view 
+          class="project-item-text"
+          wx:if="{{!item.promotion}}"
+        >{{item.price}}</view>
+        <view 
+          wx:if="{{item.notice}}"
+          class="project-item-notice"
+        >{{item.notice}}</view>
+        <view class="project-item-text">{{item.level}}</view>
+        <view class="project-item-user">
+          <image 
+            class="project-item-icon"
+            src="../../resources/user.png"
+          ></image>
+          {{item.sales}}
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>
